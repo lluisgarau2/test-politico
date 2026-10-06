@@ -56,94 +56,142 @@ export default function TestPage() {
     return results.sort((a, b) => b.percentage - a.percentage);
   }
 
-  if (finished) {
-    const results = calculateResults();
+if (finished) {
+  const results = calculateResults();
+  const winner = results[0];
 
-    return (
-      <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
-        <div className="mx-auto max-w-3xl">
-          <Link
-            href="/"
-            className="text-sm text-slate-400 transition hover:text-white"
-          >
-            ← Volver al inicio
-          </Link>
+  return (
+    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
+      <div className="mx-auto max-w-3xl">
+        <Link
+          href="/"
+          className="text-sm text-slate-400 transition hover:text-white"
+        >
+          ← Volver al inicio
+        </Link>
 
-          <div className="mt-10">
-            <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
-              Resultado
+        <div className="mt-10 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">
+            Resultado del test
+          </p>
+
+          <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+            Tu mayor coincidencia
+          </h1>
+
+          <div className="mx-auto mt-8 max-w-xl rounded-3xl border border-cyan-500/30 bg-gradient-to-br from-slate-900 to-slate-800 p-8 shadow-2xl">
+            <p className="text-sm text-slate-400">
+              Tu mayor coincidencia programática es
             </p>
 
-            <h1 className="mt-3 text-4xl font-bold tracking-tight">
-              Tu mayor coincidencia programática
-            </h1>
+            <h2 className="mt-3 text-5xl font-black text-white">
+              {winner.party}
+            </h2>
 
-            <p className="mt-4 max-w-2xl text-slate-400">
-              Este resultado muestra el grado de coincidencia entre tus
-              respuestas y las posiciones introducidas en el modelo del test.
-              No es una recomendación de voto.
+            <div className="mt-6">
+              <span className="text-6xl font-black text-cyan-400">
+                {winner.percentage}%
+              </span>
+            </div>
+
+            <p className="mt-4 text-sm leading-6 text-slate-400">
+              Este porcentaje representa el grado de coincidencia entre tus
+              respuestas y las posiciones utilizadas para construir el test.
             </p>
           </div>
+        </div>
 
-          <div className="mt-10 space-y-4">
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold">
+            Comparación con todos los partidos
+          </h2>
+
+          <div className="mt-6 space-y-4">
             {results.map((result, index) => (
               <div
                 key={result.party}
                 className="rounded-2xl border border-slate-800 bg-slate-900 p-5"
               >
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm text-slate-500">
-                        #{index + 1}
-                      </span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-medium text-slate-500">
+                      #{index + 1}
+                    </span>
 
-                      <h2 className="text-xl font-semibold">
-                        {result.party}
-                      </h2>
-                    </div>
+                    <h3 className="font-semibold">{result.party}</h3>
                   </div>
 
-                  <span className="text-2xl font-bold text-cyan-400">
+                  <span className="font-bold text-cyan-400">
                     {result.percentage}%
                   </span>
                 </div>
 
-                <div className="mt-4 h-3 overflow-hidden rounded-full bg-slate-800">
+                <div className="mt-3 h-3 overflow-hidden rounded-full bg-slate-800">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
+                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all"
                     style={{ width: `${result.percentage}%` }}
                   />
                 </div>
               </div>
             ))}
           </div>
+        </section>
 
-          <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-            <h2 className="font-semibold">Importante</h2>
+        <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <h2 className="font-semibold">¿Quieres compartir tu resultado?</h2>
 
-            <p className="mt-2 text-sm leading-6 text-slate-400">
-              El resultado depende de las posiciones políticas utilizadas para
-              construir este test y de cómo se hayan formulado las preguntas.
-              Las respuestas se procesan localmente en esta versión y no se
-              utilizan para recomendarte ningún partido.
-            </p>
-          </div>
+          <p className="mt-2 text-sm leading-6 text-slate-400">
+            Comparte el test con tus amigos y compara vuestros resultados.
+          </p>
 
           <button
             onClick={() => {
-              setCurrentQuestion(0);
-              setAnswers([]);
-              setFinished(false);
+              const text = `He hecho el TestPolítico y mi mayor coincidencia es ${winner.party} (${winner.percentage}%). ¿Cuál sería la tuya?`;
+
+              if (navigator.share) {
+                navigator.share({
+                  title: "Mi resultado en TestPolítico",
+                  text,
+                  url: window.location.href,
+                });
+              } else {
+                navigator.clipboard.writeText(
+                  `${text} ${window.location.href}`
+                );
+
+                alert("Resultado copiado al portapapeles.");
+              }
             }}
-            className="mt-8 rounded-xl bg-white px-6 py-3 font-semibold text-slate-950 transition hover:bg-slate-200"
+            className="mt-5 rounded-xl bg-white px-6 py-3 font-semibold text-slate-950 transition hover:bg-slate-200"
           >
-            Repetir el test
+            📤 Compartir mi resultado
           </button>
         </div>
-      </main>
-    );
-  }
+
+        <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <h2 className="font-semibold">Importante</h2>
+
+          <p className="mt-2 text-sm leading-6 text-slate-400">
+            Este test no recomienda votar a ningún partido. El resultado
+            muestra únicamente el grado de coincidencia entre tus respuestas
+            y las posiciones políticas utilizadas en el modelo.
+          </p>
+        </div>
+
+        <button
+          onClick={() => {
+            setCurrentQuestion(0);
+            setAnswers([]);
+            setFinished(false);
+          }}
+          className="mt-8 rounded-xl bg-white px-6 py-3 font-semibold text-slate-950 transition hover:bg-slate-200"
+        >
+          Repetir el test
+        </button>
+      </div>
+    </main>
+  );
+}
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
