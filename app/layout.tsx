@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     "afinidad política",
     "elecciones España",
   ],
+  verification: {
+    google: "B4MZYZlnmGUcioyP3hF0JS0AyS7Vbsr-Dp-AdjmKHvk",
+  },
   openGraph: {
     title: "TestPolítico | ¿Con qué partido coinciden tus ideas?",
     description:
