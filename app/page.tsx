@@ -249,6 +249,20 @@ export default function Home() {
             >
               Hacer el test
             </Link>
+
+            <Link
+              href="/privacidad"
+              className="text-slate-400 transition hover:text-cyan-400"
+            >
+              Privacidad
+            </Link>
+
+            <Link
+              href="/aviso-legal"
+              className="text-slate-400 transition hover:text-cyan-400"
+            >
+              Aviso legal
+            </Link>
           </div>
         </div>
       </footer>
