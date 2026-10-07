@@ -17,6 +17,19 @@ export const parties: Party[] = [
   "Podemos",
 ];
 
+const officialSources: Partial<Record<Party, string>> = {
+  PSOE:
+    "Programa electoral PSOE 2023 — https://www.psoe.es/media-content/2023/07/PROGRAMA_ELECTORAL-GENERALES-2023.pdf",
+  PP:
+    "Programa electoral PP 2023 — https://www.pp.es/storage/2023/07/programa_electoral_pp_23j_feijoo_2023.pdf",
+  VOX:
+    "Programa electoral VOX 2023 — https://www.voxespana.es/wp-content/uploads/2023/07/Programa-VOX-2023-con-menos-peso.pdf",
+  Sumar:
+    "Programa electoral Sumar 2023 — documentación programática de las elecciones generales del 23J",
+  Podemos:
+    "Documentación programática de Podemos",
+};
+
 export const questions: Question[] = [
   {
     id: 1,
@@ -24,13 +37,7 @@ export const questions: Question[] = [
     topic: "Fiscalidad y desigualdad",
     explanation:
       "Esta pregunta compara el grado de apoyo a una fiscalidad más progresiva y orientada a reducir las desigualdades económicas.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: -1, VOX: -2, Sumar: 2, Podemos: 2 },
   },
   {
@@ -39,13 +46,7 @@ export const questions: Question[] = [
     topic: "Servicios públicos",
     explanation:
       "Esta cuestión compara la prioridad concedida a reforzar la financiación y el alcance de los servicios públicos.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 0, VOX: -1, Sumar: 2, Podemos: 2 },
   },
   {
@@ -54,13 +55,7 @@ export const questions: Question[] = [
     topic: "Salarios y trabajo",
     explanation:
       "Esta pregunta compara las posiciones sobre el aumento del salario mínimo y el equilibrio entre salarios y costes empresariales.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: 0, Sumar: 2, Podemos: 2 },
   },
   {
@@ -69,13 +64,7 @@ export const questions: Question[] = [
     topic: "Jornada laboral",
     explanation:
       "Esta cuestión compara las posiciones sobre reducción de jornada y mejora del tiempo de trabajo manteniendo la remuneración.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: -1, VOX: -1, Sumar: 2, Podemos: 2 },
   },
   {
@@ -84,13 +73,7 @@ export const questions: Question[] = [
     topic: "Flexibilidad laboral",
     explanation:
       "Esta pregunta compara el peso concedido a la flexibilidad empresarial frente a una mayor regulación de las condiciones laborales.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: -1, PP: 2, VOX: 2, Sumar: -2, Podemos: -2 },
   },
   {
@@ -99,13 +82,7 @@ export const questions: Question[] = [
     topic: "Vivienda y alquiler",
     explanation:
       "Esta cuestión compara el apoyo a intervenir sobre los precios del alquiler frente a una mayor libertad del mercado de vivienda.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: -1, VOX: -2, Sumar: 2, Podemos: 2 },
   },
   {
@@ -114,13 +91,7 @@ export const questions: Question[] = [
     topic: "Vivienda pública",
     explanation:
       "Esta pregunta compara la prioridad concedida a ampliar el parque público de vivienda y facilitar alquileres asequibles.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: 1, Sumar: 2, Podemos: 2 },
   },
   {
@@ -129,13 +100,7 @@ export const questions: Question[] = [
     topic: "Oferta de vivienda",
     explanation:
       "Esta cuestión compara una estrategia centrada en aumentar la oferta y simplificar trámites con otras formas de intervención pública sobre la vivienda.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 0, PP: 2, VOX: 2, Sumar: -1, Podemos: -1 },
   },
   {
@@ -144,13 +109,7 @@ export const questions: Question[] = [
     topic: "Sanidad pública",
     explanation:
       "Esta pregunta compara la prioridad concedida a aumentar los recursos destinados al sistema sanitario público.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: 1, Sumar: 2, Podemos: 2 },
   },
   {
@@ -159,13 +118,7 @@ export const questions: Question[] = [
     topic: "Gestión sanitaria",
     explanation:
       "Esta cuestión compara el papel que se concede a la colaboración o prestación privada dentro del sistema sanitario.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: -1, PP: 2, VOX: 1, Sumar: -2, Podemos: -2 },
   },
   {
@@ -174,13 +127,7 @@ export const questions: Question[] = [
     topic: "Educación pública",
     explanation:
       "Esta pregunta compara la prioridad concedida al refuerzo de la financiación y los recursos de la educación pública.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: 0, Sumar: 2, Podemos: 2 },
   },
   {
@@ -189,13 +136,7 @@ export const questions: Question[] = [
     topic: "Universidad",
     explanation:
       "Esta cuestión compara las posiciones sobre reducir las barreras económicas de acceso a la educación universitaria.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: 0, Sumar: 2, Podemos: 2 },
   },
   {
@@ -204,13 +145,7 @@ export const questions: Question[] = [
     topic: "Cambio climático",
     explanation:
       "Esta pregunta compara la prioridad concedida a las políticas de reducción de emisiones y lucha contra el cambio climático.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: -2, Sumar: 2, Podemos: 2 },
   },
   {
@@ -219,13 +154,7 @@ export const questions: Question[] = [
     topic: "Energía",
     explanation:
       "Esta cuestión compara la prioridad concedida a las energías renovables y a la reducción de la dependencia de combustibles fósiles.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: -1, Sumar: 2, Podemos: 2 },
   },
   {
@@ -234,13 +163,7 @@ export const questions: Question[] = [
     topic: "Energía nuclear",
     explanation:
       "Esta pregunta compara las posiciones sobre la continuidad de la energía nuclear dentro del sistema energético español.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: -2, PP: 2, VOX: 2, Sumar: -2, Podemos: -2 },
   },
   {
@@ -249,13 +172,7 @@ export const questions: Question[] = [
     topic: "Agricultura",
     explanation:
       "Esta cuestión compara el apoyo a reducir cargas administrativas y obligaciones para agricultores y explotaciones agrarias.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: -1, PP: 1, VOX: 2, Sumar: -1, Podemos: -1 },
   },
   {
@@ -264,13 +181,7 @@ export const questions: Question[] = [
     topic: "Inmigración laboral",
     explanation:
       "Esta pregunta compara las posiciones sobre vías legales de inmigración vinculadas a las necesidades del mercado laboral.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: -1, Sumar: 2, Podemos: 2 },
   },
   {
@@ -279,13 +190,7 @@ export const questions: Question[] = [
     topic: "Control fronterizo",
     explanation:
       "Esta cuestión compara la prioridad concedida al refuerzo de los medios destinados al control de las fronteras.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 1, PP: 2, VOX: 2, Sumar: 0, Podemos: -1 },
   },
   {
@@ -294,13 +199,7 @@ export const questions: Question[] = [
     topic: "Inmigración irregular",
     explanation:
       "Esta pregunta compara las posiciones sobre endurecer las medidas frente a la inmigración irregular dentro del marco legal.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 0, PP: 2, VOX: 2, Sumar: -1, Podemos: -2 },
   },
   {
@@ -309,13 +208,7 @@ export const questions: Question[] = [
     topic: "Seguridad",
     explanation:
       "Esta cuestión compara la prioridad concedida al aumento de recursos para las fuerzas de seguridad y la lucha contra la delincuencia.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 1, PP: 2, VOX: 2, Sumar: 1, Podemos: 1 },
   },
   {
@@ -324,13 +217,7 @@ export const questions: Question[] = [
     topic: "Igualdad",
     explanation:
       "Esta pregunta compara el apoyo a mantener o ampliar políticas públicas de igualdad entre hombres y mujeres.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: -2, Sumar: 2, Podemos: 2 },
   },
   {
@@ -339,13 +226,7 @@ export const questions: Question[] = [
     topic: "Derechos LGTBI",
     explanation:
       "Esta cuestión compara las posiciones sobre mantener o ampliar las políticas públicas de protección de los derechos LGTBI.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: -2, Sumar: 2, Podemos: 2 },
   },
   {
@@ -354,13 +235,7 @@ export const questions: Question[] = [
     topic: "Aborto",
     explanation:
       "Esta pregunta compara las posiciones sobre mantener el marco legal que permite el aborto dentro de los plazos y condiciones establecidos.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 2, PP: 1, VOX: -2, Sumar: 2, Podemos: 2 },
   },
   {
@@ -369,13 +244,7 @@ export const questions: Question[] = [
     topic: "Modelo territorial",
     explanation:
       "Esta cuestión compara el grado de descentralización territorial y la distribución de competencias entre el Estado y las comunidades autónomas.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 1, PP: -1, VOX: -2, Sumar: 1, Podemos: 2 },
   },
   {
@@ -384,13 +253,7 @@ export const questions: Question[] = [
     topic: "Defensa",
     explanation:
       "Esta pregunta compara la prioridad concedida a aumentar el gasto y las capacidades de defensa de España.",
-    sources: {
-      PSOE: "Programa electoral PSOE 2023",
-      PP: "Programa electoral PP 2023",
-      VOX: "Programa electoral VOX 2023",
-      Sumar: "Programa electoral Sumar 2023",
-      Podemos: "Documentación programática de Podemos",
-    },
+    sources: officialSources,
     scores: { PSOE: 1, PP: 2, VOX: 2, Sumar: -1, Podemos: -2 },
   },
 ];
