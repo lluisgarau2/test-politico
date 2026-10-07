@@ -80,7 +80,7 @@ export default function TestPage() {
     const results = calculateResults();
     const winner = results[0];
 
-    const text = `He hecho el TestPolítico y mi mayor coincidencia es ${winner.party} con un ${winner.percentage}% de coincidencia.`;
+    const text = `🧠 He hecho el TestPolítico\n🎯 Mi mayor coincidencia: ${winner.party} — ${winner.percentage}%\n📊 ¿Con qué partido coinciden tus ideas? Haz el test.`;
 
     if (navigator.share) {
       try {

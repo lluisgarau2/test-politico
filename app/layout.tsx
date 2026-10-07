@@ -27,12 +27,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_ES",
     siteName: "TestPolítico",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1536,
+        height: 864,
+        alt: "TestPolítico - ¿Con qué partido coinciden tus ideas?",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "TestPolítico | ¿Con qué partido coinciden tus ideas?",
     description:
       "Responde 25 preguntas y descubre qué partidos presentan posiciones más próximas a tus respuestas.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
