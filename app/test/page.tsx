@@ -257,6 +257,14 @@ export default function TestPage() {
     const results = calculateResults();
     const winner = results[0];
 
+    const winnerSources = Array.from(
+      new Set(
+        questions
+          .map((question) => question.sources[winner.party])
+          .filter((source): source is string => Boolean(source))
+      )
+    );
+
     return (
       <main className="min-h-screen bg-slate-950 px-6 py-12 text-white sm:px-8">
         <div className="mx-auto max-w-4xl">
@@ -326,6 +334,55 @@ export default function TestPage() {
                   programa ni constituye una recomendación de voto.
                 </p>
               </div>
+
+              {/* Methodology and sources */}
+              <details className="mx-auto mt-5 max-w-xl rounded-2xl border border-slate-800 bg-slate-950/60 text-left">
+                <summary className="cursor-pointer px-5 py-4 text-sm font-semibold text-white transition hover:text-cyan-400">
+                  Ver metodología y fuentes
+                </summary>
+
+                <div className="border-t border-slate-800 px-5 pb-5 pt-4">
+                  <p className="text-sm leading-6 text-slate-400">
+                    El porcentaje se obtiene comparando tus respuestas con
+                    las posiciones codificadas para cada organización en las
+                    25 preguntas del test. La escala utilizada va de -2 a +2
+                    y el resultado final es la media de las coincidencias
+                    obtenidas en todas las preguntas.
+                  </p>
+
+                  <p className="mt-4 text-sm leading-6 text-slate-400">
+                    Las posiciones utilizadas son una simplificación
+                    metodológica de propuestas y documentos públicos. No
+                    representan necesariamente la totalidad del programa de
+                    cada organización ni deben interpretarse como citas
+                    literales.
+                  </p>
+
+                  <div className="mt-5">
+                    <p className="text-sm font-semibold text-white">
+                      Documentación utilizada para {winner.party}
+                    </p>
+
+                    <ul className="mt-3 space-y-2">
+                      {winnerSources.map((source) => (
+                        <li
+                          key={source}
+                          className="rounded-xl bg-slate-900 px-4 py-3 text-sm text-slate-400"
+                        >
+                          {source}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <Link
+                    href="/metodologia"
+                    className="mt-5 inline-block text-sm font-medium text-cyan-400 transition hover:text-cyan-300"
+                  >
+                    Leer la metodología completa →
+                  </Link>
+                </div>
+              </details>
             </div>
           </section>
 
