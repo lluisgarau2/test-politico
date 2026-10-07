@@ -19,10 +19,9 @@ const answerOptions: {
 
 export default function TestPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<
-    Record<number, AnswerValue>
-  >({});
+  const [answers, setAnswers] = useState<Record<number, AnswerValue>>({});
   const [finished, setFinished] = useState(false);
+  const [sharingCard, setSharingCard] = useState(false);
 
   function selectAnswer(value: AnswerValue) {
     const question = questions[currentQuestion];
@@ -98,6 +97,175 @@ export default function TestPage() {
       );
 
       alert("Resultado copiado al portapapeles.");
+    }
+  }
+
+  async function shareResultCard() {
+    if (sharingCard) return;
+
+    setSharingCard(true);
+
+    try {
+      const results = calculateResults();
+      const winner = results[0];
+
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      if (!ctx) {
+        throw new Error("No se pudo crear la tarjeta.");
+      }
+
+      const width = 1200;
+      const height = 630;
+
+      canvas.width = width;
+      canvas.height = height;
+
+      // Fondo
+      const background = ctx.createLinearGradient(
+        0,
+        0,
+        width,
+        height
+      );
+
+      background.addColorStop(0, "#020617");
+      background.addColorStop(1, "#0f172a");
+
+      ctx.fillStyle = background;
+      ctx.fillRect(0, 0, width, height);
+
+      // Círculo decorativo
+      const glow = ctx.createRadialGradient(
+        950,
+        80,
+        0,
+        950,
+        80,
+        500
+      );
+
+      glow.addColorStop(0, "rgba(34, 211, 238, 0.22)");
+      glow.addColorStop(1, "rgba(34, 211, 238, 0)");
+
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, width, height);
+
+      // Borde
+      ctx.strokeStyle = "rgba(34, 211, 238, 0.25)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(24, 24, width - 48, height - 48);
+
+      // Logo / nombre
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "700 42px Arial";
+      ctx.fillText("Test", 80, 90);
+
+      ctx.fillStyle = "#22d3ee";
+      ctx.fillText("Político", 175, 90);
+
+      // Línea pequeña
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "500 24px Arial";
+      ctx.fillText("Mi resultado", 80, 155);
+
+      // Texto principal
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "600 28px Arial";
+      ctx.fillText("Mi mayor coincidencia", 80, 225);
+
+      // Partido
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "700 92px Arial";
+      ctx.fillText(winner.party, 80, 330);
+
+      // Porcentaje
+      ctx.fillStyle = "#22d3ee";
+      ctx.font = "700 110px Arial";
+      ctx.fillText(`${winner.percentage}%`, 80, 455);
+
+      // Texto inferior
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "400 25px Arial";
+      ctx.fillText(
+        "Comparación matemática basada en 25 preguntas",
+        80,
+        525
+      );
+
+      // URL
+      ctx.fillStyle = "#64748b";
+      ctx.font = "500 22px Arial";
+      ctx.fillText(
+        window.location.host,
+        80,
+        575
+      );
+
+      const blob = await new Promise<Blob | null>((resolve) => {
+        canvas.toBlob(resolve, "image/png");
+      });
+
+      if (!blob) {
+        throw new Error("No se pudo generar la imagen.");
+      }
+
+      const file = new File(
+        [blob],
+        "mi-resultado-test-politico.png",
+        {
+          type: "image/png",
+        }
+      );
+
+      const shareText = `🧠 Mi mayor coincidencia en TestPolítico: ${winner.party} — ${winner.percentage}%`;
+
+      // Compartir imagen en móviles si el navegador lo permite
+      if (
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] })
+      ) {
+        await navigator.share({
+          title: "Mi resultado en TestPolítico",
+          text: shareText,
+          files: [file],
+        });
+
+        return;
+      }
+
+      // Si no puede compartir directamente, descarga la imagen
+      const imageUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = imageUrl;
+      link.download = "mi-resultado-test-politico.png";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(imageUrl);
+
+      alert(
+        "Tu tarjeta se ha generado. Ahora puedes subirla a WhatsApp, Instagram o donde quieras."
+      );
+    } catch (error) {
+      if (
+        error instanceof DOMException &&
+        error.name === "AbortError"
+      ) {
+        return;
+      }
+
+      console.error(error);
+      alert(
+        "No se ha podido generar la tarjeta. Puedes utilizar el botón de compartir normal."
+      );
+    } finally {
+      setSharingCard(false);
     }
   }
 
@@ -240,8 +408,18 @@ export default function TestPage() {
           {/* Actions */}
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <button
+              onClick={shareResultCard}
+              disabled={sharingCard}
+              className="rounded-xl bg-cyan-400 px-7 py-4 font-bold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {sharingCard
+                ? "Generando tarjeta..."
+                : "📸 Compartir tarjeta"}
+            </button>
+
+            <button
               onClick={shareResult}
-              className="rounded-xl bg-cyan-400 px-7 py-4 font-bold text-slate-950 transition hover:bg-cyan-300"
+              className="rounded-xl border border-slate-700 px-7 py-4 font-semibold text-slate-200 transition hover:border-slate-500 hover:bg-slate-900"
             >
               Compartir resultado
             </button>
