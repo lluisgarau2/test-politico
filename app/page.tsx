@@ -80,14 +80,14 @@ export default function Home() {
                   </div>
 
                   <div className="rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-300">
-                    DEMO
+                    EJEMPLO FICTICIO
                   </div>
                 </div>
 
                 <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5">
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="text-2xl font-bold">Partido A</p>
+                      <p className="text-2xl font-bold">PSOE</p>
                       <p className="mt-1 text-sm text-slate-400">
                         Ejemplo ilustrativo
                       </p>
@@ -102,10 +102,10 @@ export default function Home() {
                 </div>
 
                 <div className="mt-5 space-y-4">
-                  <ResultBar name="Partido B" percentage={69} />
-                  <ResultBar name="Partido C" percentage={61} />
-                  <ResultBar name="Partido D" percentage={54} />
-                  <ResultBar name="Partido E" percentage={47} />
+                  <ResultBar name="PP" percentage={69} />
+                  <ResultBar name="Sumar" percentage={61} />
+                  <ResultBar name="Podemos" percentage={54} />
+                  <ResultBar name="VOX" percentage={47} />
                 </div>
 
                 <p className="mt-6 text-center text-xs text-slate-500">
