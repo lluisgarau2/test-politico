@@ -35,10 +35,10 @@ export default function Home() {
               </h1>
 
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Responde 25 preguntas sobre economía, vivienda, sanidad,
-                educación, inmigración, derechos sociales y otros temas.
-                Descubre qué partidos presentan posiciones más próximas a las
-                tuyas.
+                Haz este test político de España y responde 25 preguntas sobre
+                economía, vivienda, sanidad, educación, inmigración, derechos
+                sociales, energía y otros temas. Compara matemáticamente tus
+                respuestas con las posiciones utilizadas para cada partido.
               </p>
 
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
@@ -117,8 +117,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEO context */}
+      <section className="border-y border-slate-800 bg-slate-900/30">
+        <div className="mx-auto max-w-4xl px-6 py-16 text-center sm:px-8">
+          <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
+            Test político España
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            Compara tus ideas con diferentes posiciones políticas
+          </h2>
+
+          <p className="mt-5 text-lg leading-8 text-slate-400">
+            Este comparador político utiliza un conjunto de 25 preguntas sobre
+            asuntos de actualidad política. Tus respuestas se transforman en
+            una escala numérica y se comparan con las posiciones utilizadas
+            para cada organización en el test.
+          </p>
+
+          <p className="mt-4 text-lg leading-8 text-slate-400">
+            El objetivo es ofrecer una herramienta sencilla para explorar
+            coincidencias y diferencias entre tus respuestas y distintas
+            posiciones políticas. El resultado no recomienda votar a ningún
+            partido.
+          </p>
+        </div>
+      </section>
+
       {/* How it works */}
-      <section className="border-y border-slate-800 bg-slate-900/40">
+      <section className="border-b border-slate-800 bg-slate-900/40">
         <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
@@ -157,8 +184,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Transparency */}
+      {/* Topics */}
       <section>
+        <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
+              Temas del test
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              25 preguntas sobre diferentes asuntos
+            </h2>
+
+            <p className="mt-4 text-lg leading-8 text-slate-400">
+              El test aborda cuestiones relacionadas con fiscalidad, empleo,
+              vivienda, sanidad, educación, energía, inmigración, seguridad,
+              igualdad, derechos sociales, modelo territorial y defensa.
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            {[
+              "Economía",
+              "Vivienda",
+              "Sanidad",
+              "Educación",
+              "Trabajo",
+              "Energía",
+              "Inmigración",
+              "Seguridad",
+              "Igualdad",
+              "Derechos LGTBI",
+              "Aborto",
+              "Modelo territorial",
+              "Defensa",
+            ].map((topic) => (
+              <span
+                key={topic}
+                className="rounded-full border border-slate-800 bg-slate-900/60 px-4 py-2 text-sm text-slate-300"
+              >
+                {topic}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Transparency */}
+      <section className="border-t border-slate-800">
         <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
             <div>
