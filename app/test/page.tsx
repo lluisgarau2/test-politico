@@ -122,7 +122,6 @@ export default function TestPage() {
       canvas.width = width;
       canvas.height = height;
 
-      // Fondo
       const background = ctx.createLinearGradient(
         0,
         0,
@@ -136,7 +135,6 @@ export default function TestPage() {
       ctx.fillStyle = background;
       ctx.fillRect(0, 0, width, height);
 
-      // Círculo decorativo
       const glow = ctx.createRadialGradient(
         950,
         80,
@@ -152,12 +150,10 @@ export default function TestPage() {
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
 
-      // Borde
       ctx.strokeStyle = "rgba(34, 211, 238, 0.25)";
       ctx.lineWidth = 3;
       ctx.strokeRect(24, 24, width - 48, height - 48);
 
-      // Logo / nombre
       ctx.fillStyle = "#ffffff";
       ctx.font = "700 42px Arial";
       ctx.fillText("Test", 80, 90);
@@ -165,27 +161,22 @@ export default function TestPage() {
       ctx.fillStyle = "#22d3ee";
       ctx.fillText("Político", 175, 90);
 
-      // Línea pequeña
       ctx.fillStyle = "#94a3b8";
       ctx.font = "500 24px Arial";
       ctx.fillText("Mi resultado", 80, 155);
 
-      // Texto principal
       ctx.fillStyle = "#94a3b8";
       ctx.font = "600 28px Arial";
       ctx.fillText("Mi mayor coincidencia", 80, 225);
 
-      // Partido
       ctx.fillStyle = "#ffffff";
       ctx.font = "700 92px Arial";
       ctx.fillText(winner.party, 80, 330);
 
-      // Porcentaje
       ctx.fillStyle = "#22d3ee";
       ctx.font = "700 110px Arial";
       ctx.fillText(`${winner.percentage}%`, 80, 455);
 
-      // Texto inferior
       ctx.fillStyle = "#94a3b8";
       ctx.font = "400 25px Arial";
       ctx.fillText(
@@ -194,14 +185,9 @@ export default function TestPage() {
         525
       );
 
-      // URL
       ctx.fillStyle = "#64748b";
       ctx.font = "500 22px Arial";
-      ctx.fillText(
-        window.location.host,
-        80,
-        575
-      );
+      ctx.fillText(window.location.host, 80, 575);
 
       const blob = await new Promise<Blob | null>((resolve) => {
         canvas.toBlob(resolve, "image/png");
@@ -221,7 +207,6 @@ export default function TestPage() {
 
       const shareText = `🧠 Mi mayor coincidencia en TestPolítico: ${winner.party} — ${winner.percentage}%`;
 
-      // Compartir imagen en móviles si el navegador lo permite
       if (
         navigator.share &&
         navigator.canShare &&
@@ -236,7 +221,6 @@ export default function TestPage() {
         return;
       }
 
-      // Si no puede compartir directamente, descarga la imagen
       const imageUrl = URL.createObjectURL(blob);
       const link = document.createElement("a");
 
@@ -323,6 +307,25 @@ export default function TestPage() {
                 posiciones representadas en el test presentan mayor coincidencia
                 matemática contigo.
               </p>
+
+              {/* What the percentage means */}
+              <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-slate-800 bg-slate-950/60 p-5 text-left">
+                <p className="text-sm font-semibold text-white">
+                  ¿Qué significa este porcentaje?
+                </p>
+
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Un {winner.percentage}% significa que tus respuestas presentan
+                  un grado de coincidencia matemática del {winner.percentage}%
+                  con las posiciones utilizadas para este partido en las
+                  preguntas del test.
+                </p>
+
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  No significa que compartas el {winner.percentage}% de su
+                  programa ni constituye una recomendación de voto.
+                </p>
+              </div>
             </div>
           </section>
 
