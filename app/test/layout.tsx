@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Test Político España | ¿Con qué partido coinciden tus ideas?",
+  title: "Test Político España | Compara tus ideas con partidos políticos",
   description:
-    "Responde 25 preguntas y descubre con qué partidos políticos coinciden más tus ideas mediante una comparación matemática de tus respuestas.",
+    "Haz un test político de 25 preguntas y compara matemáticamente tus respuestas con las posiciones utilizadas para PSOE, PP, VOX, Sumar y Podemos.",
 };
 
 export default function TestLayout({
