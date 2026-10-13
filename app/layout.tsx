@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -57,6 +58,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-2876205856474833"
+        />
+      </head>
       <body>
         {children}
         <GoogleAnalytics gaId="G-16073607035" />
